@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        cartBGNum = 0;
+        tableBgNum = 0;
+        gameIsStartet=false;
+        function changeTableBg(value){
+            cartBGNum=value;
+            sessionStorage.setItem('cartBGNum',cartBGNum);
+            console.log("cartBGNum" + cartBGNum);
+        }
+        function changeCardBg(value){
+            tableBgNum=value;
+            sessionStorage.setItem('tableBgNum',tableBgNum);
+            console.log("tableBgNum" + tableBgNum);
+        }
+        function gameTypeSave(value){
+            gameTypeSaveText=value;
+        }
+
+    </script>
+</head>
+<body>
+<style>
+    body {
+        background: url("Resources/original.jpg");
+        background-color: #F4C182;
+        background-repeat: no-repeat;
+        background-size: 1300px 950px
+    }
+    #time {
+        float: left;
+        position: relative;
+    }
+
+    #logo {
+        margin: auto;
+        width: 60%;
+        padding: 10px;
+        padding-top: 40px;
+        padding-left: 0px;
+        border-left-width: 30px;
+        left: 50px;
+        font-weight: bolder;
+        font-size: x-large;
+    }
+    #timeResult{
+        margin:auto;
+    }
+    #canvas {
+        margin:auto;
+    }
+
+</style>
+
+
+<h3 id="header" style="background-color: yellow; height: 60px"><span id="time">Play Time</span>
+    <div id="logo"></div>
+    <div id="betData">
+        <div class="beting" id="bet">Bet 50€</div><div class="beting" id="lowerBet"></div><br><span id="currentMoney"></span><br>
+        <span id="betMoney">Current Bet:</span><br></div>
+</h3>
+
+<nav>
+    <ul class="cf">
+        <li><a href="#" onclick = "end();timer.stopTimer();timer.saveCurrentTimer();reload()" style="background-color: orange">Concede</a></li>
+        <li><a class="dropdown" href="#" style="background-color: orangered">Games Menu</a>
+            <ul class="colorRed">
+                <li><a class="startgame" onclick = "startGame('Grandfather\'s Clock')" >Grandfather's Clock</a></li>
+                <li><a class="startgame" onclick = "startGame('Eight Off')" >Eight Off</a></li>
+                <li><a class="startgame" onclick = "startGame('Grandfather')" >Grandfather</a></li>
+                <li><a class="startgame" onclick = "startGame('TopsyTurvi Queens')" >TopsyTurvi Queens</a></li>
+                <li><a class="startgame" onclick = "startGame('Prison')" >Prison</a></li>
+                <li><a class="startgame" onclick = "startGame('Alternations')" >Alternations</a></li>
+            </ul>
+        </li>
+        <li><a href="#" class="dropdown" style="background-color: orange">Rules</a>
+            <ul class = "colorOrange">
+                <li><a target="_blank" href="Rules/gfcRules.html" >Grandfather's Clock</a></li>
+                <li><a target="_blank" href="Rules/eoRules.html">Eight Off</a></li>
+                <li><a target="_blank" href="Rules/gfRules.html" >Grandfather</a></li>
+                <li><a target="_blank" href="Rules/ttqRules.html">TopsyTurvi Queens</a></li>
+                <li><a target="_blank" href="Rules/prisonRules.html">Prison</a></li>
+                <li><a target="_blank" href="Rules/alterationsRules.html" >Alternations</a></li>
+            </ul>
+        </li>
+        <li><a href="#" class="dropdown" style="background-color: orangered">Card Backgrounds</a>
+            <ul  class = "colorRed1">
+                <li>
+                    <form id="form1" name="form1" method="post" action="">
+                        <p>Background<br />
+
+                            <label>
+                                <input type="radio" name="RadioGroup1" value="1" id="RadioGroup1_0" checked="checked" onchange="changeCardBg(this.value)"/>
+                                Green</label>
+                            <br />
+                            <label>
+                                <input type="radio" name="RadioGroup1" value="2" id="RadioGroup1_2" onchange="changeCardBg(this.value)"/>
+                                Orange</label>
+                            <br />
+                            <label>
+                                <input type="radio" name="RadioGroup1" value="0" id="RadioGroup1_3" onchange="changeCardBg(this.value)"/>
+                                Sea</label><br />
+                            <input type="radio" name="RadioGroup1" value="3" id="RadioGroup1_4" onchange="changeCardBg(this.value)"/>
+                            Black</label>
+                        </p><br />
+                        <br />
+                        <p>Card's Back<br />
+                            <label>
+                                <input type="radio" name="RadioGroup2" value="0" id="RadioGroup2_0" checked="checked" onchange="changeTableBg(this.value)"/>
+                                Varan</label>
+                            <br />
+                            <label>
+                                <input type="radio" name="RadioGroup2" value="1" id="RadioGroup2_1" onchange="changeTableBg(this.value)"/>
+                                Orca</label>
+                            <br />
+                            <label>
+                                <input type="radio" name="RadioGroup2" value="2" id="RadioGroup2_2" onchange="changeTableBg(this.value)"/>
+                                Careta</label>
+                            <br />
+                            <label>
+                                <input type="radio" name="RadioGroup2" value="3" id="RadioGroup2_3" onchange="changeTableBg(this.value)"/>
+                                Sky</label>
+                            <br />
+                            <label>
+                                <input type="radio" name="RadioGroup2" value="4" id="RadioGroup2_4" onchange="changeTableBg(this.value)"/>
+                                Puffin</label>
+                            <br />
+                        </p>
+                        <br />
+                    </form>
+
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div id="gameButtons">
+
+</div>
+<div id = "timeResult">Score
+    </div>
+<canvas id="canvas" width="1200" height="750" style="margin:auto;">not supported</canvas>
+
+
+<script src="jquery-2.1.4.js"></script>
+<script src="globalFunctions.js"></script>
+<script src="models/Event.js"></script>
+<script src="models/Card.js"></script>
+<script src="models/Deck.js"></script>
+<script src="models/Pile.js"></script>
+<script src="models/Timer.js"></script>
+<script src="GameTypes/GrandfathersClock/Game.js"></script>
+<script src="GameTypes/GrandfathersClock/Field.js"></script>
+<script src="GameTypes/GrandfathersClock/GameLogic.js"></script>
+<script src="GameTypes/EightOff/Game.js"></script>
+<script src="GameTypes/EightOff/Field.js"></script>
+<script src="GameTypes/EightOff/GameLogic.js"></script>
+<script src="GameTypes/Grandfather/Game.js"></script>
+<script src="GameTypes/Grandfather/Field.js"></script>
+<script src="GameTypes/Grandfather/GameLogic.js"></script>
+<script src="GameTypes/Prison/Game.js"></script>
+<script src="GameTypes/Prison/Field.js"></script>
+<script src="GameTypes/Prison/GameLogic.js"></script>
+<script src="GameTypes/Alternations/Game.js"></script>
+<script src="GameTypes/Alternations/Field.js"></script>
+<script src="GameTypes/Alternations/GameLogic.js"></script>
+<script src="GameTypes/TopsyQueens/Game.js"></script>
+<script src="GameTypes/TopsyQueens/Field.js"></script>
+<script src="GameTypes/TopsyQueens/GameLogic.js"></script>
+<script src="models/GameApp.js"></script>
+<script src="logic.js"></script>
+<link rel="stylesheet" type="text/css" href="animate.css">
+<script src="jquery.lettering-0.6.1.min.js"></script>
+<script src="jquery.textillate.js"></script>
+
+
+</body>
+</html>

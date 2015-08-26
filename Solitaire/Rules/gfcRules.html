@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Grandfather's Clock</title>
+</head>
+<style>
+
+    body {
+        background-image: url("background/asa.jpg");
+        background-size: 100%;
+    }
+
+    #title{
+        background-color: #C8C8AC;
+        opacity: 0.9;
+        border-radius: 25px;
+        text-align: center;
+        font-family: Comic Sans MS;
+        width: 57%;
+        margin: auto;
+
+
+    }
+
+    .text {
+
+        width: 100%;
+        height: 100%;
+
+    }
+    #first {
+        background-color: #C8C8AC;
+        opacity: 0.9;
+        border-radius: 25px;
+        text-align: center;
+        width: 50%;
+        height: 80%;
+        padding: 3% ;
+        font-family: Comic Sans MS;
+        font-size: 20px;
+        margin: auto;
+    }
+
+
+</style>
+<body>
+<div id = "title">
+    <h1>
+        Grandfather's Clock Rules
+    </h1>
+</div>
+<div id="first">
+<div  class="textil text">
+
+<span>
+This solitaire uses one deck (52 cards).
+    Ten of hearts, jack of spades, queen of diamonds, king of clubs, two of hearts, three of spades, four of diamonds, five of clubs, six of hearts, seven of spades, eight of diamons and nine of clubs are dealt into 12 foundation piles arranged like a clock dial. Ten of hearts is placed at the 1 o'clock position, jack of spades is placed at 2 o'clock position etc.
+    Remaining cards are dealt into 8 tableau piles (5 cards per pile). To build each foundation up in suit build the foundations up in suit until the cards on the top correspond to the numbers of a real clockface (with jack as 11 o'clock, queen as 12, Ace as 1, etc.). At the end of the game the foundations at positions 1, 2, 3 and 4 o'clock will contain 5 cards, all others will contain 4 cards.
+    The top cards of tableau piles are available for play on foundations. You may build tableau piles down regardless of suit. One card at a time can be moved from pile to pile. When a tableau becomes empty you can fill the space with any card.
+
+</span>
+
+
+</div>
+<img src = "background/GrandFather Clock.png"  width="50%" height="50%" style = " margin: auto;" >
+</div>
+
+
+
+
+<script src="../jquery-2.1.4.js"></script>
+<script src="../jquery.lettering-0.6.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../animate.css">
+<script src="../jquery.textillate.js"></script>
+<script>
+    $(".textil").textillate({ in: { effect: 'fadeInLeftBig',delay: 6,type: 'word'} });
+</script>
+
+</body>
+</html>

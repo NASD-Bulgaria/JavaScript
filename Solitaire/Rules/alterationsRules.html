@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>  Alterations Rules</title>
+</head>
+<style>
+
+    body {
+        background-image: url("background/asa.jpg");
+        background-size: 100%;
+    }
+
+    #title{
+        background-color: #C8C8AC;
+        opacity: 0.9;
+        border-radius: 25px;
+        text-align: center;
+        font-family: Comic Sans MS;
+        width: 57%;
+        margin: auto;
+
+
+    }
+
+    .text {
+
+        width: 100%;
+        height: 100%;
+
+    }
+    #first {
+        background-color: #C8C8AC;
+        opacity: 0.9;
+        border-radius: 25px;
+        text-align: center;
+        width: 50%;
+        height: 80%;
+        padding: 3% ;
+        font-family: Comic Sans MS;
+        font-size: 20px;
+        margin: auto;
+    }
+
+
+</style>
+<body>
+<div id = "title">
+    <h1>
+        Alterations Rules
+    </h1>
+</div>
+<div id="first">
+<div  class="textil text">
+
+<span>
+This solitaire uses 104 cards (2 decks). You have 7 vertical tableau piles with 7 cards in each pile. Some cards in these piles are closed.Aces are moved to the foundations as they become available.
+
+</span>
+
+    <span>The object of the game is to build the foundations up in suit to Kings.</span>
+    <span>
+The rules: All top cards of tableau piles are available to play.
+You can move cards from one tableau pile to another one.
+You may build tableau piles down regardless of suit.
+You can move either a single card or a set of cards.
+When one of the piles becomes empty you can fill the
+space with any available single card or set of cards.
+If, during play, any of closed cards becomes the top
+card of a pile, it is automatically turned over.</span>
+    </span>
+
+</div>
+<img src = "background/Alternation.png"  width="50%" height="50%" style = " margin: auto;" >
+</div>
+
+
+
+
+<script src="../jquery-2.1.4.js"></script>
+<script src="../jquery.lettering-0.6.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../animate.css">
+<script src="../jquery.textillate.js"></script>
+<script>
+    $(".textil").textillate({ in: { effect: 'rotateInUpRight',delay: 6,type: 'word'} });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+nav ul {
+    -webkit-font-smoothing:antialiased;
+    text-shadow:0 1px 0 #FFF;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+nav li {
+    float: left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-width: 25%;
+}
+
+nav a {
+    color: #444;
+    display: block;
+    font: bold 16px/50px sans-serif;
+    padding: 0 25px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+}
+nav .dropdown:after {
+    content: "\25ba";
+}
+nav .dropdown:hover:after{
+    content:'\25bc'
+}
+
+nav li ul {
+    float: left;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 35px;
+    visibility: hidden;
+    z-index: 1;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+}
+nav li:hover ul {
+    opacity: 1;
+    top: 50px;
+    visibility: visible;
+}
+nav li ul li {
+    float: none;
+    width: 100%;
+}
+
+.beting{
+    display: block;
+    padding: 0 7px;
+    text-align: right;
+    text-decoration: none;
+    border-radius: 5px;
+    /*border: solid  black;*/
+    background: #ccc;
+    float:right;
+
+}
+.beting:hover{
+    background: #bbb;
+}
+h3 {
+    background: #ddd;
+    color: #444;
+    display: block;
+    font: bold 14px/18px sans-serif;
+    padding: 0 15px;
+    text-align: right;
+    text-decoration: none;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+}
+#betData{
+    padding-top:7px;
+}
+#time {
+    float: left;
+    color: #444;
+    text-align: right;
+    font: bold 16px/20px sans-serif;
+    padding-top: 14px;
+    /*display: absolute;*/
+}
+#logo{
+    position:absolute;
+    right: 50%;
+    top:-4px;
+}
+img{
+    height: 100px;
+    width: 210px;
+}
+
+
+.cf:after, .cf:before {
+    content:"";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}
+.cf {
+    zoom:1;
+}
+.colorOrange :hover{
+    background-color: #FF7519;
+}
+.colorOrange {
+    background-color: orange;
+}
+
+.colorRed :hover{
+    background-color: #E62E00;
+}
+.colorRed {
+    background-color: orangered;
+
+}
+.colorRed1 {
+    background-color: orangered;
+}
+#timeResult{
+    font-size:16px;
+    color:#0A0A1F;
+    font-family:Arial Black;
+    text-align:center;
+    text-decoration:blink;
+    width: 340px;
+    background-color: #990000;
+    box-shadow: 10px 10px 5px #888888;
+    padding: 5px 5px 5px 5px;
+}

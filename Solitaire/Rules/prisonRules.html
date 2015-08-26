@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Prison</title>
+</head>
+<style>
+
+    body {
+        background-image: url("background/asa.jpg");
+        background-size: 100%;
+    }
+
+    #title{
+        background-color: #C8C8AC;
+        opacity: 0.9;
+        border-radius: 25px;
+        text-align: center;
+        font-family: Comic Sans MS;
+        width: 57%;
+        margin: auto;
+
+
+    }
+
+    .text {
+
+        width: 100%;
+        height: 100%;
+
+    }
+    #first {
+        background-color: #C8C8AC;
+        opacity: 0.9;
+        border-radius: 25px;
+        text-align: center;
+        width: 50%;
+        height: 80%;
+        padding: 3% ;
+        font-family: Comic Sans MS;
+        font-size: 20px;
+        margin: auto;
+    }
+
+
+</style>
+<body>
+<div id = "title">
+    <h1>
+        Prison
+    </h1>
+</div>
+<div id="first">
+<div  class="textil text">
+
+<span>
+ This solitaire uses 52 cards (1 deck).
+    The first card dealt to the foundations is the starter card for all the foundations. The three other cards of the same rank are automatically played to the remaining foundations during the deal.
+    40 cards are dealt into 10 tableau piles (4 cards per pile). Eight cells (reserves) are placed above the tableau piles. At the start of the game 1 card is dealt to each cell.
+
+</span>
+
+    <span>The object of the game is: To build the foundations up in suit until each pile contains thirteen cards.
+ <span>
+The rules:The top cards of tableau piles and cards from cells are available to play. You may build tableau piles down in suit. Only one card at a time can be moved. The top card of any tableau pile can also be moved to any cell. Each cell may contain only one card. Cards in the cells can be moved to the foundation piles or back to the tableau piles, if possible.
+</span>
+
+</div>
+<img src = "background/Prison.png"  width="50%" height="50%" style = " margin: auto;" >
+</div>
+
+
+
+
+<script src="../jquery-2.1.4.js"></script>
+<script src="../jquery.lettering-0.6.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../animate.css">
+<script src="../jquery.textillate.js"></script>
+<script>
+    $(".textil").textillate({ in: { effect: 'rotateIn',delay: 1,type: 'word'} });
+</script>
+
+</body>
+</html>

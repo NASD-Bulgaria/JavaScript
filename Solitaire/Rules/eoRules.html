@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Eight Off</title>
+</head>
+<style>
+
+    body {
+        background-image: url("background/asa.jpg");
+        background-size: 100%;
+    }
+
+    #title{
+        background-color: #C8C8AC;
+        opacity: 0.9;
+        border-radius: 25px;
+        text-align: center;
+        font-family: Comic Sans MS;
+        width: 57%;
+        margin: auto;
+
+
+    }
+
+    .text {
+
+        width: 100%;
+        height: 100%;
+
+    }
+    #first {
+        background-color: #C8C8AC;
+        opacity: 0.9;
+        border-radius: 25px;
+        text-align: center;
+        width: 50%;
+        height: 80%;
+        padding: 3% ;
+        font-family: Comic Sans MS;
+        font-size: 20px;
+        margin: auto;
+    }
+
+
+</style>
+<body>
+<div id = "title">
+    <h1>
+        Eight Off Rules
+    </h1>
+</div>
+<div id="first">
+<div  class="textil text">
+
+<span>
+The cards are dealt, face up, into eight columns (or piles) of six cards each. (These eight columns make up the tableau.) The remaining four cards go into the first four cells. When dealt, the table should bear some resemblance to the picture on the right, although a layout with the cells on the left and the foundations at the top is another option.
+
+</span>
+
+    <span>The object of the game is:  the four slots along the left of the picture represent the four foundations. These, as in Klondike, are meant to be built up in suit from Ace to King. That is, each foundation begins with the Ace of one suit and is followed by the 2 of the same suit, which is followed by the 3 of the same suit, and so forth, until all the cards through the King have been placed on the foundation.
+        <span>
+The rules: The tableau piles which fill the majority of the figure are where most of the game play actually occurs. The cards are, again, all face up, and are built down, traditionally by suit. (Players can modify the difficulty of the game, if they like, by building down in a different manner. For example, one could play by alternating colours, the way Klondike is played).
+Technically, one may only move the cards between columns one at a time; however, the presence of a free cell essentially increases the number of cards that can be moved. (e.g., if there are three open cells, four cards can actually be moved at once—one for each cell, and the one that can always be moved.)
+If a column is emptied, most rules allow for one to place any card in the empty space, regardless of suit or rank (as long as it follows the other restrictions on moving cards).
+</span>
+
+</div>
+<img src = "background/Eight Off Ex1.png"  width="50%" height="50%" style = " margin: auto;" >
+</div>
+
+
+
+
+<script src="../jquery-2.1.4.js"></script>
+<script src="../jquery.lettering-0.6.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../animate.css">
+<script src="../jquery.textillate.js"></script>
+<script>
+    $(".textil").textillate({ in: { effect: 'bounceIn',delay: 7,type: 'word'} });
+</script>
+
+</body>
+</html>
