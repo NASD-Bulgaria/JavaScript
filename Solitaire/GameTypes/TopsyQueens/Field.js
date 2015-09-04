@@ -1,7 +1,7 @@
-var topsyTurvy = topsyTurvy || {};
+var ttq = ttq || {};
 
 
-(function(topsyTurvy){
+(function(ttq){
 
     /**
      * Class Field
@@ -89,7 +89,7 @@ var topsyTurvy = topsyTurvy || {};
      * @param deck
      * @returns {Field}
      */
-    topsyTurvy.getField = function(deck){
+    ttq.getField = function(deck){
         return new Field(deck);
     }
-})(topsyTurvy);
+})(ttq);

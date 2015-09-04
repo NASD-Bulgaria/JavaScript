@@ -1,6 +1,6 @@
-var topsyTurvy = topsyTurvy || {};
+var ttq = ttq || {};
 
-(function(topsyTurvy){
+(function(ttq){
     /**
      * Class Game
      * @constructor
@@ -10,11 +10,11 @@ var topsyTurvy = topsyTurvy || {};
      */
     function Game(){
         this.deck = model.getDeck(2);
-        this.field = topsyTurvy.getField(this.deck);
-        this.gameLogic = topsyTurvy.getGameLogic();
+        this.field = ttq.getField(this.deck);
+        this.gameLogic = ttq.getGameLogic();
     }
 
-    topsyTurvy.getGame = function(){
+    ttq.getGame = function(){
         return new Game();
     }
-})(topsyTurvy);
+})(ttq);

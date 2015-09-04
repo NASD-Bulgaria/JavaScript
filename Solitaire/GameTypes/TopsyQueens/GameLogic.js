@@ -1,6 +1,6 @@
-var topsyTurvy = topsyTurvy || {};
+var ttq = ttq || {};
 
-(function(topsyTurvy){
+(function(ttq){
 
     /**
      * Contains ranks, suits arrays and timesCanRedraw.
@@ -147,8 +147,8 @@ var topsyTurvy = topsyTurvy || {};
         }
     };
 
-    topsyTurvy.getGameLogic = function(){
+    ttq.getGameLogic = function(){
         return new GameLogic();
     }
 
-})(topsyTurvy);
+})(ttq);
