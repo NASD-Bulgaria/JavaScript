@@ -6,12 +6,8 @@ var eo = eo || {};
         this.suits = ["H","D","C","S"];
     }
 
-    GameLogic.prototype.specialConditions = function (piles){
-
-    };
     GameLogic.prototype.canPickUp = function(pile, pileNumber, cardPosition){
-        //pick 
-        if(pileNumber >= 0 && pileNumber < 8){
+        if(pileNumber >= 0 && pileNumber < 8){ // can pick cards from cascading piles
             if(cardPosition == pile.cards.length-1){
                 return true;
             }
@@ -19,87 +15,64 @@ var eo = eo || {};
                 return false;
             }
             else{
-                for (var i = cardPosition + 1; i < pile.cards.length; i++) {
-                    
-                    /*if(pile.cards[i].rank == "A" && pile.cards[i-1].rank == "2"){
-
-                    }*/
-                    if(pile.cards[i].suit != pile.cards[i-1].suit){
-                        return false;
-                    }
-                    else if(this.ranks.indexOf(pile.cards[i].rank) + 1 != this.ranks.indexOf(pile.cards[i - 1].rank)){
-                        return false;
-                    }
-
-                }
-                return true;
+                return this.canPickUpMoreCards(pile,cardPosition);
             }
         }
-        else if(pileNumber >= 8 && pileNumber < 16){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return(pileNumber >= 8 && pileNumber < 16);
     };
     //wиn condition
     GameLogic.prototype.wonGame = function (piles) {
-        if (piles[16].cards.length==13 &&
+        return (piles[16].cards.length==13 &&
             piles[17].cards.length==13 &&
             piles[18].cards.length==13 &&
-            piles[19].cards.length==13) {
-            return true;
-        }
+            piles[19].cards.length==13);
     };
 
-GameLogic.prototype.canPlace = function(fieldPile, tempPile, fieldPileCard, tempPileCard, pileNumber, oldPileNumber, cardNumber){
-    //can we place cards on the next 8 piles
-    if(pileNumber>=0 && pileNumber<=7){
-        if(cardNumber== -1) {
-                return true;
+    GameLogic.prototype.canPlace = function(fieldPile, tempPile, fieldPileCard, tempPileCard, pileNumber, oldPileNumber, cardNumber){
+        //can we place cards on cascading 8 piles
+        if(pileNumber>=0 && pileNumber<=7){
+            return (cardNumber== -1 ||
+                (this.ranks.indexOf(fieldPileCard.rank) - 1 == this.ranks.indexOf(tempPileCard.rank) && fieldPileCard.suit == tempPileCard.suit))              
         }
-        else if(this.ranks.indexOf(fieldPileCard.rank) - 1 == this.ranks.indexOf(tempPileCard.rank) && fieldPileCard.suit == tempPileCard.suit){
-            return true;
+        //top 8 piles
+        else if(pileNumber>=8 && pileNumber<=15){
+            return(cardNumber== -1 && tempPile.cards.length <2);
         }
-        else{
-            return false;
-        }
-    }
-    //next 8 piles
-    else if(pileNumber>=8 && pileNumber<=15){
-        if(cardNumber== -1 && tempPile.cards.length <2) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    //can we place cards on last 4 piles
-    else if(pileNumber>=16 && pileNumber<=19){
-        if(fieldPile.cards.length==0 && tempPileCard.rank=="A"){
-            return true;
-        }
-        else if(fieldPileCard.suit == tempPileCard.suit){
-            if(fieldPileCard.rank=="A"&& tempPileCard.rank=="2"){
+        //can we place cards on last 4 piles
+        else if(pileNumber>=16 && pileNumber<=19){
+            if(fieldPile.cards.length==0 && tempPileCard.rank=="A"){
                 return true;
             }
-            else if(this.ranks.indexOf(fieldPileCard.rank)==
-                this.ranks.indexOf(tempPileCard.rank) - 1){
-                return true;
+            else if(fieldPileCard.suit == tempPileCard.suit){
+                return((fieldPileCard.rank=="A"&& tempPileCard.rank=="2")|| //check if it's "2"
+                    (this.ranks.indexOf(fieldPileCard.rank)== //check if it's next rank
+                    this.ranks.indexOf(tempPileCard.rank) - 1));
             }
             else{
                 return false;
             }
+            
         }
-        else{
+        else {
             return false;
         }
-        
-    }
-    else {
-        return false;
-    }
-};
+    };
+
+    GameLogic.prototype.specialConditions = function (piles){
+
+    };
+
+    GameLogic.prototype.canPickUpMoreCards = function (pile,cardPosition) {
+        for (var i = cardPosition + 1; i < pile.cards.length; i++) { 
+            if(pile.cards[i].suit != pile.cards[i-1].suit){
+                return false;
+            }
+            else if(this.ranks.indexOf(pile.cards[i].rank) + 1 != this.ranks.indexOf(pile.cards[i - 1].rank)){
+                return false;
+            }
+        }
+        return true;
+    };
       
     eo.getGameLogic = function(){
         return new GameLogic();

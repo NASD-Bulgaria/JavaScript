@@ -1,15 +1,28 @@
 var gfc = gfc || {};
 
 (function(gfc){
+    /**
+     * Contains ranks and suits arrays for calculating if cards can be picked.
+     * @constructor
+     */
     function GameLogic(){
         this.ranks =["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
         this.suits = ["H","D","C","S"];
     }
 
+    /**
+     * Function that contains special conditions for the current game if there are any present.
+     */
     GameLogic.prototype.specialConditions = function (){
 
     };
-
+    /**
+     * A function that defines if the clicked card can be picked up
+     * @param pile
+     * @param pileNumber
+     * @param cardPosition
+     * @returns {boolean}
+     */
     GameLogic.prototype.canPickUp = function(pile, pileNumber, cardPosition){
         if(cardPosition == pile.cards.length-1 && pileNumber < 8){
             return true;
@@ -18,6 +31,11 @@ var gfc = gfc || {};
             return false;
         }
     };
+    /**
+     * A function that defines whether the win condition of the given game is met.
+     * @param piles
+     * @returns {boolean}
+     */
     GameLogic.prototype.wonGame = function (piles) {
         if (piles[8].cards[piles[8].cards.length-1].rank=="Q" &&
             piles[9].cards[piles[9].cards.length-1].rank=="A" &&
@@ -35,6 +53,17 @@ var gfc = gfc || {};
             return true;
         }
     };
+    /**
+     * Function that defines if the given card of the temp pile can be placed on a new target pile.
+     * @param fieldPile
+     * @param tempPile
+     * @param fieldPileCard
+     * @param tempPileCard
+     * @param pileNumber
+     * @param oldPileNumber
+     * @param cardNumber
+     * @returns {boolean}
+     */
     GameLogic.prototype.canPlace = function(fieldPile, tempPile,fieldPileCard, tempPileCard, pileNumber,oldPileNumber, cardNumber){
 
         if(pileNumber < 8){
@@ -69,7 +98,10 @@ var gfc = gfc || {};
             }
         }
     };
-
+    /**
+     * Constructor for the game logic
+     * @returns {GameLogic}
+     */
     gfc.getGameLogic = function(){
         return new GameLogic();
     }

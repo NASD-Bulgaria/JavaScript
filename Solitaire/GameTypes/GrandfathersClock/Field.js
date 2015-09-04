@@ -1,11 +1,21 @@
 var gfc = gfc || {};
 
 (function(gfc){
+    /**
+     * Declaration of the Field object used in every different game. Uses a deck of cards and generates all the Piles required for the game and fills them with cards.
+     *
+     * @param deck
+     * @constructor
+     */
     function Field(deck){
         this.piles = [];
         this.deck = deck;
     }
 
+    /**
+     * Function that is used to generate the piles for the game and fill them with cards.
+     * @returns {Array}
+     */
     Field.prototype.generateGame = function () {
         //first row
         this.piles.push(model.getPile(20,20,true, 0));
@@ -84,7 +94,11 @@ var gfc = gfc || {};
 
         return this.piles;
     };
-
+    /**
+     * Constructior for the Field object
+     * @param deck
+     * @returns {Field}
+     */
     gfc.getField = function(deck){
         return new Field(deck);
     }

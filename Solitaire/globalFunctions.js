@@ -1,23 +1,34 @@
 var scope = scope || {};
 
 (function (scope){
-
+    /**
+     * Global functions class declaration. Global functions contains methods for drawing the game objects on the canvas.
+     * @prop width - a constant that shows the width of a single card.
+     * @prop height - a constant that shows the height of a single card.
+     * @prop canvas - the canvas element taken from the html
+     * @prop ctx - context that contains methods for drawing on the canvas.
+     * @prop background - the background image that is drawn to the playing field.
+     * @constructor
+     */
     function GlobalFunctions () {
         this.width = 90;
         this.height = 135;
         this.canvas = document.getElementById("canvas");
         this.ctx = this.canvas.getContext("2d");
         this.background= new Image();
-        //this.background.src = "Resources/bg24.png";
         this.background.src = "Resources/" + tableBg[tableBgNum] +".png";
     }
 
+    /**
+     * Function that draws the borders around different piles, then assigns new X and Y to every card and draws it in the corresponding place on the canvas
+     * @param field - The field instance of the current game.
+     */
     GlobalFunctions.prototype.drawField = function (field) {
         for (var i = 0; i < field.piles.length; i++) {
             var pile = field.piles[i];
             this.ctx.strokeStyle = "black 1px radius: 2px";
             this.ctx.strokeRect(pile.x + 3, pile.y + 3, 84, 129);
-            //========
+
             if (gameTypeSaveText=='Eight Off' && i>=16 && i<=19){
                     this.ctx.font = "30px Arial";
                     this.ctx.fillText("A",pile.x + 3 + 30, pile.y + 3 +80);
@@ -43,7 +54,7 @@ var scope = scope || {};
             }
 
 
-            //========
+
             for (var j = 0; j < pile.cards.length; j++) {
                 var card = pile.cards[j];
                 card.x = pile.x;
@@ -60,7 +71,10 @@ var scope = scope || {};
         }
     };
 
-
+    /**
+     * This function is used to load the cards images before the game is started. Required because the code gets executed before the cards are loaded into the browser.
+     * @param deck
+     */
     GlobalFunctions.prototype.loadCards = function (deck) {
         for (var i = 0; i < deck.cards.length; i++) {
             var img = new Image();
@@ -72,8 +86,13 @@ var scope = scope || {};
             cb.src = "Resources/" + cartBG[cartBGNum] + ".png";
 
         }
+        this.background.src = "Resources/" + tableBg[tableBgNum] +".png";
 
     };
+    /**
+     * this is a function that takes a card as a parameter and draws it according to its X and Y on the canvas.
+     * @param card - an instance of the Card object
+     */
     GlobalFunctions.prototype.paintCard =function (card) {
         var context = this.ctx;
         var img = new Image();
@@ -87,19 +106,28 @@ var scope = scope || {};
 
 
     } ;
+    /**
+     * Function that invokes paintCard method for every card in a given pile. Used to draw the cards from the temp pile while playing the game.
+     * @param pile - an instance of the Pile object
+     */
     GlobalFunctions.prototype.paintPile = function (pile) {
         for (var i = 0; i < pile.cards.length; i++) {
             this.paintCard(pile.cards[i]);
         }
 
     };
-
+    /**
+     * Draws all cards from a given deck
+     * @param deck
+     */
     GlobalFunctions.prototype.drawAllCards = function(deck) {
         for (var i = 0; i < deck.cards.length; i++) {
             this.paintCard(deck.cards[i]);
         }
     };
-
+    /**
+     * This function deletes the contains of the canvas by drawing the background image ontop.
+     */
     GlobalFunctions.prototype.clearBoard = function () {
 
         var img = new Image();
@@ -113,57 +141,4 @@ var scope = scope || {};
 
 })(scope);
 
-tableBg = ["sea01", "bg24", "bg24_002", "bg24_004"];       // masi
-cartBG = ["backlizard", "backorcaspyhop2", "backturtle", "backcloud", "backpuffingrass"];        // garbove
 
-//tableBgNum=0;
-//cartBGNum=0;
-
-if (sessionStorage.getItem('tableBgNum') === null) {
-}else{
-    var playerWin = sessionStorage.getItem('tableBgNum');
-}
-if (sessionStorage.getItem('cartBGNum') === null) {
-}else{
-    var playerWin = sessionStorage.getItem('cartBGNum');
-}
-
-
-
-//current Money and Current Bet
-sessionStorage.setItem("currentBet",0);
-var bet;
-if(parseInt(sessionStorage.getItem("currentMoney")) <= 0 || !sessionStorage.getItem("currentMoney") ){
-    sessionStorage.setItem("currentMoney",1000);
-}
-$("#lowerBet").fadeOut();
-$("#bet").click(function(){
-    message("You have placed bet");
-    if (parseInt(sessionStorage.getItem("currentBet"))<parseInt(sessionStorage.getItem("currentMoney"))){
-        bet = parseInt(sessionStorage.getItem("currentBet"))+50;
-        sessionStorage.setItem("currentBet",bet);
-        $("#betMoney").text("Current Bet:"+bet);
-        $("#lowerBet").html("Lower bet 50&euro;").fadeIn("slow");
-    }
-});
-//button for lowering current bet
-$("#lowerBet").click(function(){
-
-    if(parseInt(sessionStorage.getItem("currentBet"))>0){
-        message("You have lowered the bet");
-        bet = parseInt(sessionStorage.getItem("currentBet"))-50;
-        sessionStorage.setItem("currentBet",bet);
-        $("#betMoney").text("Current Bet:"+bet);
-    }
-    else {
-        message("You have to place bet first!");
-    }
-});
-
-//sounds
-soundWin = document.createElement('audio');
-soundWin.setAttribute('src', 'Models/success.wav');
-soundWin.volume = 0.8;
-soundTick = document.createElement('audio');
-soundTick.setAttribute('src', 'Models/tick.mp3');
-soundTick.volume = 0.8;

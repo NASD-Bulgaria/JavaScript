@@ -3,44 +3,35 @@
 $(window).ready(function () {
     glob = scope.getGlobalFunctions();
     deck = model.getDeck(1);
+    sounds = model.getSounds();
     glob.loadCards(deck);
     glob.drawAllCards(deck);
-    $("#currentMoney").html("Money:"+parseInt(sessionStorage.getItem("currentMoney"))+"&euro;");
+
+    buttons = model.getButtons();
+
+    buttons.checkForMoney();
+    buttons.bindBetButton();
+    buttons.bindLowerBetButtons();
+    buttons.displayMoney();
+    
+    score = model.getScore();
+    score.displayScore();
     message("Welcome to the game!");
 
-    function pretty_time_string(num) {
-        return ( num < 10 ? "0" : "" ) + num;
-    }
-    if (gameTimes) {
-        for (var i = 0; i < gameTimes.length; i++) {
-
-            var name = gameNames[i];
-            //game name
-
-            var hours = Math.floor(gameTimes[i] / 3600);
-            //total_seconds = total_seconds % 3600;
-
-            var minutes = Math.floor(gameTimes[i] % 3600 / 60);
-            //total_seconds = total_seconds % 60;
-
-            var seconds = Math.floor(gameTimes[i] % 3600 % 60 % 60);
-
-            hours = pretty_time_string(hours);
-            minutes = pretty_time_string(minutes);
-            seconds = pretty_time_string(seconds);
-            $("#timeResult").append("<p>"+name+":" + hours + ":" + minutes + ":" + seconds + "</p>");
-        }
-    }
 });
 function initialize() {
+
     glob = scope.getGlobalFunctions();
     glob.loadCards(deck);
     glob.drawAllCards(deck);
 }
 var timer,
-    gameTimes = JSON.parse(sessionStorage.getItem("gameTime"));
-    var gameNames = JSON.parse(sessionStorage.getItem("gameName"));
+    gameTimes = JSON.parse(sessionStorage.getItem("gameTime")),
+    gameNames = JSON.parse(sessionStorage.getItem("gameName"));
 
+    
+
+//start button for creating the chosen game 
 function startGame(value) {
 
     if (!gameIsStartet){
@@ -49,11 +40,6 @@ function startGame(value) {
             gameIsStartet=true;
             initialize();
             gameTypeSave(value);
-            var money = parseInt(sessionStorage.getItem("currentMoney"))-bet;
-            sessionStorage.setItem("currentMoney",money);
-            $("#currentMoney").text("Money:"+money);
-            $("#bet,#timeResult,#lowerBet").fadeOut("slow");
-
             game = model.getGameApp(value);
             events = model.getEvent(game,glob);
             glob.clearBoard();
@@ -61,12 +47,13 @@ function startGame(value) {
             glob.drawField(game);
             events.mouseDownListen();
             events.mouseUpListen();
-            if (timer) {
-                timer.restartTimer();
-            } else {
-                timer = model.getTimer(value);
-                timer.startTimer();
-            }
+
+            timer = model.getTimer();
+            timer.startTimer();
+            score = model.getScore(value);
+
+            buttons.displayStartingMoney();
+
             message("You started " + value + " solitaire");
         }
         else {
@@ -81,30 +68,14 @@ function startGame(value) {
 
 }
 
-function end(){
-
-    $("#bet").fadeIn("slow");
-    timer.stopTimer();
-    glob.clearBoard();
-    glob = scope.getGlobalFunctions();
-    deck = model.getDeck(1);
-    glob.loadCards(deck);
-    glob.drawAllCards(deck);
-
-    sessionStorage.setItem("currentBet",0);
-    $("#currentMoney").html("Money:"+parseInt(sessionStorage.getItem("currentMoney"))+"&euro;");
-    $("#betMoney").text("Current Bet:");
-
-
-}
-
+//Reload curent page
 function reload() {
     gameIsStartet=false;
     location.reload();
 }
 toReset= false;
-function drawWinDefect(x, y, cardNum){
 
+function drawWinDefect(x, y, cardNum){
 
     var rad=70;
     var tempY=0;
@@ -160,15 +131,14 @@ function drawWinDefect(x, y, cardNum){
         reload();
     }
 
-    var loopTimer = setTimeout('drawWinDefect('+x+', '+y+', '+cardNum+')',2);
+    var loopTimer = setTimeout('drawWinDefect('+x+', '+y+', '+cardNum+')',5);
     setInterval(function() {
         if(!toReset)toReset = true;
     },5000);
 
 }
 
-
-
+//Create floating message in the Header #logo
 function message(string) {
     var text = $("<span></span>");
     text.attr("id", "toAnim");
